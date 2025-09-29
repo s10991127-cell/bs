@@ -99,9 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             { time: '12:50 – 01:35', subject: 'পদার্থ-১' }
                         ]
                     } 
-                }
             }
-        },
         '2': {
             name: '২য় সেমিস্টার',
             branches: null // "Routine update message"
