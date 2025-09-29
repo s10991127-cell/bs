@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ক্লাস রুটিন</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300..700&family=Noto+Sans+Bengali:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="welcome-popup" class="popup">
+        <div class="popup-content">
+            <span class="close-btn">&times;</span>
+            <div class="emoji">👋</div>
+            <h2 class="welcome-text">স্বাগতম!</h2>
+            <p>আপনার রুটিন দেখতে নিচে ক্লিক করুন।</p>
+            <button id="close-popup-btn">শুরু করুন</button>
+        </div>
+    </div>
+
+    <div class="main-container hidden">
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="https://via.placeholder.com/80" alt="Logo">
+            </div>
+            <h2>সেমিস্টার</h2>
+            <ul id="semester-list">
+                <li data-semester="1">১ম সেমিস্টার</li>
+                <li data-semester="2">২য় সেমিস্টার</li>
+                <li data-semester="4">৪র্থ সেমিস্টার</li>
+                <li data-semester="6">৬ষ্ঠ সেমিস্টার</li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <header>
+            <h1>সাপ্তাহিক ক্লাস রুটিন</h1>
+            </header>
+            
+            <div class="branch-nav hidden" id="branch-nav-1">
+                <div class="branch-item" data-branch="k">ক শাখা</div>
+                <div class="branch-item" data-branch="kh">খ শাখা</div>
+                <div class="branch-item" data-branch="g">গ শাখা</div>
+            </div>
+
+            <section id="routine-display">
+                <div class="initial-message">
+                    <p>রুটিন দেখার জন্য বাম পাশের সেমিস্টার নির্বাচন করুন।</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    
+    <div id="animated-icon-container">
+        <div class="pixel-bat"></div>
+    
+
+    <script src="script.js"></script>
+</body>
+</html>
