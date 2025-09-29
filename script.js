@@ -44,6 +44,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         ]
                     }
                 },
+                '1': {
+            name: '১ম সেমিস্টার',
+            branches: {
                 'kh': {
                     name: 'খ শাখা',
                     routine: {
