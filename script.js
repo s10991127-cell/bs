@@ -10,111 +10,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const branchNav = document.getElementById('branch-nav-1');
     const routineDisplay = document.getElementById('routine-display');
     const initialMessage = document.querySelector('.initial-message');
+    const creatorText = document.getElementById('creator-text');
 
-    // --- Routine Data Structure ---
+    // --- routines structure (metadata kept here; actual 'routine' can be null and loaded from separate files) ---
     const routines = {
         '1': {
             name: '১ম সেমিস্টার',
             branches: {
-                'k': {
-                    name: 'ক শাখা',
-                    routine: {
-                        'রবিবার': [
-                            { time: '09:30 – 10:15', subject: 'রসায়ন-১' },
-                            { time: '10:20 – 11:05', subject: 'পদার্থ-১' },
-                            { time: '11:10 – 11:55', subject: 'গণিত-১' }
-                        ],
-                        'সোমবার': [
-                            { time: '09:30 – 10:15', subject: 'ব্যব : রসায়ন-১' },
-                            { time: '10:20 – 11:05', subject: 'জীববিজ্ঞান-১' },
-                            { time: '11:10 – 11:55', subject: 'ব্যব : পদার্থ-১' }
-                        ],
-                        'মঙ্গলবার': [
-                            { time: '09:30 – 10:15', subject: 'ইংরেজি-১' },
-                            { time: '10:20 – 11:05', subject: 'ব্যব: জীববিজ্ঞান-১' },
-                            { time: '11:10 – 11:55', subject: 'গণিত -১' }
-                        ],
-                        'বুধবার': [
-                            { time: '11:10 – 11:55', subject: 'ইংরেজি-১' },
-                            { time: '12:00 – 12:45', subject: 'রসায়ন -১' }
-                        ],
-                        'বৃহস্পতিবার': [
-                            { time: '12:00 – 12:45', subject: 'ব্যব: গণিত-১' },
-                            { time: '12:50 – 01:35', subject: 'পদার্থ-১' }
-                        ]
-                    }
-                },
-                '1': {
-            name: '১ম সেমিস্টার',
-            branches: {
-                'kh': {
-                    name: 'খ শাখা',
-                    routine: {
-                        'রবিবার': [
-                            { time: '09:30 – 10:15', subject: 'রসায়ন-১' },
-                            { time: '10:20 – 11:05', subject: 'পদার্থ-১' },
-                            { time: '11:10 – 11:55', subject: 'গণিত-১' }
-                        ],
-                        'সোমবার': [
-                            { time: '09:30 – 10:15', subject: 'ব্যব : রসায়ন-১' },
-                            { time: '10:20 – 11:05', subject: 'জীববিজ্ঞান-১' },
-                            { time: '11:10 – 11:55', subject: 'ব্যব : পদার্থ-১' }
-                        ],
-                        'মঙ্গলবার': [
-                            { time: '09:30 – 10:15', subject: 'ইংরেজি-১' },
-                            { time: '10:20 – 11:05', subject: 'ব্যব: জীববিজ্ঞান-১' },
-                            { time: '11:10 – 11:55', subject: 'গণিত -১' }
-                        ],
-                        'বুধবার': [
-                            { time: '11:10 – 11:55', subject: 'ইংরেজি-১' },
-                            { time: '12:00 – 12:45', subject: 'রসায়ন -১' }
-                        ],
-                        'বৃহস্পতিবার': [
-                            { time: '12:00 – 12:45', subject: 'ব্যব: গণিত-১' },
-                            { time: '12:50 – 01:35', subject: 'পদার্থ-১' }
-                        ]
-                    } 
-                },
-                'g': {
-                    name: 'গ শাখা',
-                    routine: {
-                        'রবিবার': [
-                            { time: '09:30 – 10:15', subject: 'রসায়ন-১' },
-                            { time: '10:20 – 11:05', subject: 'পদার্থ-১' },
-                            { time: '11:10 – 11:55', subject: 'গণিত-১' }
-                        ],
-                        'সোমবার': [
-                            { time: '09:30 – 10:15', subject: 'ব্যব : রসায়ন-১' },
-                            { time: '10:20 – 11:05', subject: 'জীববিজ্ঞান-১' },
-                            { time: '11:10 – 11:55', subject: 'ব্যব : পদার্থ-১' }
-                        ],
-                        'মঙ্গলবার': [
-                            { time: '09:30 – 10:15', subject: 'ইংরেজি-১' },
-                            { time: '10:20 – 11:05', subject: 'ব্যব: জীববিজ্ঞান-১' },
-                            { time: '11:10 – 11:55', subject: 'গণিত -১' }
-                        ],
-                        'বুধবার': [
-                            { time: '11:10 – 11:55', subject: 'ইংরেজি-১' },
-                            { time: '12:00 – 12:45', subject: 'রসায়ন -১' }
-                        ],
-                        'বৃহস্পতিবার': [
-                            { time: '12:00 – 12:45', subject: 'ব্যব: গণিত-১' },
-                            { time: '12:50 – 01:35', subject: 'পদার্থ-১' }
-                        ]
-                    } 
+                'k': { name: 'ক শাখা', routine: null },   // routine in routines/1k.js
+                'kh': { name: 'খ শাখা', routine: null },  // routines/1kh.js (create later)
+                'g': { name: 'গ শাখা', routine: null }    // routines/1g.js (create later)
             }
-        '2': {
-            name: '২য় সেমিস্টার',
-            branches: null // "Routine update message"
         },
-        '4': {
-            name: '৪র্থ সেমিস্টার',
-            branches: null // "Routine update message"
-        },
-        '6': {
-            name: '৬ষ্ঠ সেমিস্টার',
-            branches: null // "Routine update message"
-        }
+        '2': { name: '২য় সেমিস্টার', branches: null },
+        '4': { name: '৪র্থ সেমিস্টার', branches: null },
+        '6': { name: '৬ষ্ঠ সেমিস্টার', branches: null }
     };
 
     // --- Event Listeners ---
@@ -126,11 +36,62 @@ document.addEventListener('DOMContentLoaded', () => {
     semesterList.addEventListener('click', handleSemesterClick);
     branchNav.addEventListener('click', handleBranchClick);
 
-    // --- Core Functions ---
+    // creator text playful click
+    if (creatorText) {
+        creatorText.addEventListener('click', () => {
+            creatorText.classList.add('annoy');
+            setTimeout(() => creatorText.classList.remove('annoy'), 3000);
+        });
+    }
+
+    // --- Helper: get current active semester id ---
+    function getActiveSemesterId() {
+        const active = semesterList.querySelector('li.active');
+        return active ? active.dataset.semester : null;
+    }
+
+    // --- Render branch-nav dynamically from routines metadata ---
+    function renderBranchNav(semesterId) {
+        branchNav.innerHTML = '';
+        const sem = routines[semesterId];
+        if (!sem || !sem.branches) {
+            branchNav.classList.add('hidden');
+            return;
+        }
+        for (const key in sem.branches) {
+            const b = sem.branches[key];
+            const div = document.createElement('div');
+            div.className = 'branch-item';
+            div.dataset.branch = key;
+            div.dataset.semester = semesterId;
+            div.textContent = b.name || key;
+            branchNav.appendChild(div);
+        }
+        branchNav.classList.remove('hidden');
+    }
+
+    // --- Load a routine file dynamically (e.g., routines/1k.js) ---
+    function loadRoutineFile(semesterId, branchId, cb) {
+        const filePath = `routines/${semesterId}${branchId}.js`; // e.g., routines/1k.js
+        // already loaded?
+        if (document.querySelector(`script[src="${filePath}"]`)) {
+            // small delay so that script's code (if it sets routines(...)) runs
+            setTimeout(() => cb && cb(null), 50);
+            return;
+        }
+        const s = document.createElement('script');
+        s.src = filePath;
+        s.onload = () => cb && cb(null);
+        s.onerror = () => cb && cb(new Error('Failed to load ' + filePath));
+        document.body.appendChild(s);
+    }
+
+    // --- Click handlers ---
     function handleSemesterClick(e) {
         const semesterItem = e.target.closest('li');
         if (!semesterItem) return;
 
+        // ui active state
         const allSemesterItems = semesterList.querySelectorAll('li');
         allSemesterItems.forEach(item => item.classList.remove('active'));
         semesterItem.classList.add('active');
@@ -138,8 +99,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const semesterId = semesterItem.dataset.semester;
         const semesterData = routines[semesterId];
 
-        if (semesterData.branches) {
-            branchNav.classList.remove('hidden');
+        if (semesterData && semesterData.branches) {
+            // render branch buttons dynamically for the selected semester
+            renderBranchNav(semesterId);
             routineDisplay.innerHTML = `<div class="initial-message">শাখা নির্বাচন করুন</div>`;
             sidebar.classList.remove('sidebar-hidden');
             content.classList.remove('content-full');
@@ -153,43 +115,57 @@ document.addEventListener('DOMContentLoaded', () => {
         const branchItem = e.target.closest('.branch-item');
         if (!branchItem) return;
 
+        // ui active state for branches
         const allBranchItems = branchNav.querySelectorAll('.branch-item');
         allBranchItems.forEach(item => item.classList.remove('active'));
         branchItem.classList.add('active');
 
         const branchId = branchItem.dataset.branch;
-        showRoutine('1', branchId);
+        const semesterId = branchItem.dataset.semester || getActiveSemesterId() || '1';
+        showRoutine(semesterId, branchId);
     }
 
+    // --- Show routine (will load external file if routine is null) ---
     function showRoutine(semesterId, branchId = null) {
-        let routineHTML = '';
-        let title = '';
+        if (initialMessage) initialMessage.classList.add('hidden');
 
-        if (initialMessage) {
-            initialMessage.classList.add('hidden');
+        const sem = routines[semesterId];
+        if (!sem) {
+            routineDisplay.innerHTML = createMessage('এই সেমিস্টারের তথ্য পাওয়া যায়নি।');
+            return;
         }
 
         if (branchId) {
-            const branchData = routines[semesterId].branches[branchId];
-            title = `${routines[semesterId].name} - ${branchData.name}`;
+            const branchData = sem.branches ? sem.branches[branchId] : null;
+            const title = `${sem.name} - ${(branchData && branchData.name) || branchId}`;
 
-            if (branchData.routine) {
-                routineHTML = createRoutineTable(title, branchData.routine);
+            if (branchData && branchData.routine) {
+                routineDisplay.innerHTML = createRoutineTable(title, branchData.routine);
                 sidebar.classList.add('sidebar-hidden');
                 content.classList.add('content-full');
             } else {
-                routineHTML = createMessage(`রুটিন আপডেটের কাজ চলছে। শীঘ্রই জানানো হবে।`);
-                sidebar.classList.add('sidebar-hidden');
-                content.classList.add('content-full');
+                // try to load external file: routines/{semester}{branch}.js
+                routineDisplay.innerHTML = createMessage('রুটিন লোড করা হচ্ছে...');
+                loadRoutineFile(semesterId, branchId, (err) => {
+                    const loadedBranch = routines[semesterId] && routines[semesterId].branches && routines[semesterId].branches[branchId];
+                    if (!err && loadedBranch && loadedBranch.routine) {
+                        routineDisplay.innerHTML = createRoutineTable(title, loadedBranch.routine);
+                        sidebar.classList.add('sidebar-hidden');
+                        content.classList.add('content-full');
+                    } else {
+                        // fallback message if file missing or routine not provided
+                        routineDisplay.innerHTML = createMessage('রুটিন আপডেটের কাজ চলছে। শীঘ্রই জানানো হবে।');
+                        sidebar.classList.add('sidebar-hidden');
+                        content.classList.add('content-full');
+                    }
+                });
             }
         } else {
-            title = routines[semesterId].name;
-            routineHTML = createMessage(`রুটিন আপডেটের কাজ চলছে। শীঘ্রই জানানো হবে।`);
+            // semester selected but no specific branch
+            routineDisplay.innerHTML = createMessage(`রুটিন আপডেটের কাজ চলছে। শীঘ্রই জানানো হবে।`);
             sidebar.classList.remove('sidebar-hidden');
             content.classList.remove('content-full');
         }
-
-        routineDisplay.innerHTML = routineHTML;
     }
 
     // --- Helper Functions to create HTML content ---
@@ -198,17 +174,17 @@ document.addEventListener('DOMContentLoaded', () => {
         for (const day in routineData) {
             let subjectsHTML = '';
             routineData[day].forEach(period => {
-                subjectsHTML += `<div class="time-and-subject"><strong>(${period.time})</strong> ${period.subject}</div>`;
+                subjectsHTML += `<div class="time-and-subject"><strong>(${escapeHtml(period.time)})</strong> ${escapeHtml(period.subject)}</div>`;
             });
             dailyRoutineHTML += `
                 <tr>
-                    <td>${day}</td>
+                    <td>${escapeHtml(day)}</td>
                     <td>${subjectsHTML}</td>
                 </tr>
             `;
         }
         return `
-            <h2>${title}</h2>
+            <h2>${escapeHtml(title)}</h2>
             <table>
                 <thead>
                     <tr>
@@ -224,10 +200,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function createMessage(message) {
-        return `<div class="message-box">${message}</div>`;
+        return `<div class="message-box">${escapeHtml(message)}</div>`;
     }
 
-    // Initial state
+    function escapeHtml(text) {
+        if (!text && text !== 0) return '';
+        return String(text)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+    }
+
+    // --- Initial state ---
     mainContainer.classList.add('hidden');
     welcomePopup.classList.remove('hidden');
-});
+
+    // If yo
